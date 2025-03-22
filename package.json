@@ -1,32 +1,34 @@
 {
   "name": "twitter-gm-enhanced",
+  "displayName": "Twitter GM Enhanced",
   "version": "1.0.0",
-  "description": "Enhanced Twitter/X automation extension with modern features",
-  "private": true,
+  "description": "Enhanced Twitter GM Bot with advanced analytics and automation features",
+  "author": "vmcosta",
   "scripts": {
     "dev": "plasmo dev",
     "build": "plasmo build",
     "package": "plasmo package"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.3",
+    "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.15.6",
-    "@mui/material": "^5.15.6",
-    "@plasmohq/messaging": "^0.6.2",
-    "@plasmohq/storage": "^1.9.3",
-    "plasmo": "^0.84.2",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.2",
+    "@plasmohq/messaging": "^0.5.0",
+    "@plasmohq/storage": "^1.6.1",
+    "plasmo": "^0.82.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "simplex-noise": "^4.0.1"
   },
   "devDependencies": {
     "@plasmohq/prettier-plugin-sort-imports": "^3.6.4",
-    "@types/chrome": "^0.0.258",
-    "@types/node": "^20.11.10",
-    "@types/react": "^18.2.48",
-    "@types/react-dom": "^18.2.18",
-    "prettier": "^3.2.4",
-    "typescript": "^5.3.3"
+    "@types/chrome": "^0.0.237",
+    "@types/node": "^20.2.3",
+    "@types/react": "^18.2.7",
+    "@types/react-dom": "^18.2.4",
+    "prettier": "^2.8.8",
+    "typescript": "^5.0.4"
   },
   "manifest": {
     "host_permissions": [
@@ -34,7 +36,26 @@
       "https://*.x.com/*"
     ],
     "permissions": [
-      "storage"
+      "storage",
+      "tabs",
+      "alarms"
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": [
+          "assets/icon-16.png",
+          "assets/icon-32.png",
+          "assets/icon-48.png",
+          "assets/icon-128.png"
+        ],
+        "matches": ["https://*.twitter.com/*", "https://*.x.com/*"]
+      }
+    ],
+    "content_scripts": [
+      {
+        "matches": ["https://*.twitter.com/*", "https://*.x.com/*"],
+        "js": ["src/content/twitter-content.tsx"]
+      }
     ]
   }
 }
